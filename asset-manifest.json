@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mood-diary/static/css/main.9c3c386e.css",
+    "main.js": "/mood-diary/static/js/main.ee1bbc58.js",
+    "static/js/453.14650194.chunk.js": "/mood-diary/static/js/453.14650194.chunk.js",
+    "index.html": "/mood-diary/index.html",
+    "main.9c3c386e.css.map": "/mood-diary/static/css/main.9c3c386e.css.map",
+    "main.ee1bbc58.js.map": "/mood-diary/static/js/main.ee1bbc58.js.map",
+    "453.14650194.chunk.js.map": "/mood-diary/static/js/453.14650194.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c3c386e.css",
+    "static/js/main.ee1bbc58.js"
+  ]
+}
