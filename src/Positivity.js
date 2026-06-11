@@ -70,7 +70,7 @@ function Positivity() {
       </div>
 
       <div className="PositivityFooter">
-        <p></p>
+        <p>Бојана Наумовска, 232003</p>
       </div>
     </section>
   );

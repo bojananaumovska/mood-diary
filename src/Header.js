@@ -49,7 +49,6 @@ function Header() {
         <div style={{ display: 'flex', alignItems: 'center' }}>
 <div>
   <h2>{avatar} {name}</h2>
-  <span style={{ fontSize: '16px', color: '#b02f60', opacity: 0.7 }}>Бојана Наумовска, 232003 - ПНУВ проект</span>
 </div>
 <button onClick={() => setIsEditing(true)}>EDIT</button>
         </div>

@@ -165,7 +165,7 @@ function ResultsGraph() {
 
       <div className="GraphCard MoodGraph">
         <h2>Расположение</h2>
-        {renderPie(moodChartSlices, 'Настроение')}
+        {renderPie(moodChartSlices, 'расположение')}
       </div>
 
       <div className="GraphCard SleepGraph">
