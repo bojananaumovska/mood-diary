@@ -1,38 +1,670 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  text-align: left;
   min-height: 100vh;
+  background: linear-gradient(180deg, #fff7fb 0%, #fff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header {
+  background-color: #FFC7E2;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 12px;
+}
+
+.Header button {
+  margin-left: 15px;
+  background-color: #FFB3D1;
+  border: 2px solid #FF85B3;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.Header button:hover {
+  background-color: #FF85B3;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.Header h2 {
+  font-size: 24px;
+}
+
+.Calendar {
+  flex: 0 0 min(420px, 100%);
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fff9fb 0%, #ffeaf1 100%);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 181, 209, 0.35);
+}
+
+.CalendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.CalendarHeader h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  color: #b02f60;
+}
+
+.CalendarHeader span {
+  display: block;
+  color: #7f3c58;
+  font-size: 0.95rem;
+}
+
+.CalendarHeader button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #ff8eb3;
+  border-radius: 14px;
+  background: white;
+  color: #c43f7b;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.CalendarHeader button:hover {
+  background: #ffd9eb;
+}
+
+.CalendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.DayName,
+.Day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  border-radius: 14px;
+}
+
+.DayName {
+  color: #8b5d74;
+  font-weight: 700;
+}
+
+.Day {
+  border: 1px solid transparent;
+  background: white;
+  color: #63334a;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.Day:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #ffadc6;
+  box-shadow: 0 8px 16px rgba(255, 176, 206, 0.25);
+}
+
+.Day.empty {
+  background: transparent;
+  cursor: default;
+  border: none;
+}
+
+.Day.selected {
+  background: #ff8eb3;
+  color: white;
+  font-weight: 700;
+  border-color: #ff5980;
+}
+
+.CalendarFooter {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 181, 209, 0.35);
+  color: #7f3c58;
+  font-size: 0.98rem;
+}
+
+.MoodForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0;
+}
+
+.MoodPicker {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.MoodForm label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.MoodForm input[type="range"] {
+  width: 100%;
+}
+
+.MoodForm textarea {
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  padding: 8px;
+  border: 1px solid #FFB3D1;
+  resize: none;
+  font-family: inherit;
+}
+
+.MoodForm button {
+  background-color: #FFB3D1;
+  border: 2px solid #FF85B3;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+}
+
+.MoodForm button:hover {
+  background-color: #FF85B3;
+}
+
+.MainLayout {
+  padding: 16px 18px 28px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.PageNav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0 0;
+  flex-wrap: wrap;
+  padding: 0 16px;
+}
+
+.PageNav button {
+  border: 1px solid #ff8eb3;
+  border-radius: 999px;
+  background: #fff;
+  color: #b02f60;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(255, 156, 180, 0.18);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.PageNav button:hover {
+  transform: translateY(-1px);
+}
+
+.PageNav button.active,
+.PageNav button:hover {
+  background: #ff8eb3;
+  color: #fff;
+  border-color: #ff5980;
+}
+
+.CalendarLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.Calendar {
+  width: 100%;
+  min-width: 0;
+  flex: none;
+  box-sizing: border-box;
+}
+
+.FormPanel {
+  width: 100%;
+  min-width: 0;
+  background: #fff0f6;
+  border-radius: 16px;
+  padding: 22px;
+  min-height: 300px;
+  box-shadow: inset 0 0 0 1px rgba(255, 170, 204, 0.35);
+  box-sizing: border-box;
+}
+
+.SelectedDate {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.NoSelection {
+  color: #aaa;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.Dashboard {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(320px, 1fr);
+  grid-template-rows: auto 1fr;
+  gap: 18px;
+  width: min(1120px, 100%);
+  max-width: 1120px;
+  min-height: calc(100vh - 220px);
+  padding: 18px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  justify-items: center;
+  align-items: start;
+}
+
+.DashboardHeader {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  gap: 10px;
+  padding: 18px 0 14px;
+  border-bottom: 1px solid rgba(255, 181, 209, 0.45);
 }
 
-.App-link {
-  color: #61dafb;
+.DashboardHeader h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #b02f60;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.DashboardHeader p {
+  margin: 0;
+  color: #7f3c58;
+  font-size: 1rem;
+  max-width: 740px;
+}
+
+.PositivityPage {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 220px);
+  padding: 30px 20px;
+}
+
+.PositivityHeader,
+.PositivityFooter {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.PositivityHeader h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #b02f60;
+}
+
+.PositivityHeader p,
+.PositivityFooter p {
+  margin: 0;
+  color: #7f3c58;
+  font-size: 1rem;
+}
+
+.PositivityCard {
+  width: min(680px, 100%);
+  background: white;
+  border-radius: 24px;
+  padding: 28px 24px;
+  border: 1px solid rgba(255, 181, 209, 0.35);
+  box-shadow: 0 18px 40px rgba(255, 175, 205, 0.18);
+  text-align: center;
+}
+
+.PositivityQuote {
+  margin: 0 0 20px;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #7f3c58;
+}
+
+.PositivityCard button {
+  border: none;
+  border-radius: 999px;
+  background: #ff8eb3;
+  color: #fff;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 10px 22px rgba(255, 100, 150, 0.2);
+  transition: transform 0.16s ease, filter 0.16s ease;
+}
+
+.PositivityCard button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.ResultsGraph {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "summary summary"
+    "mood sleep"
+    "notes notes";
+  gap: 50px;
+  min-height: 0;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  justify-items: center;
+  align-items: start;
+  padding: 0 12px 20px;
+}
+
+.ResultsGraph > .SummaryCards {
+  grid-area: summary;
+  width: 100%;
+}
+
+.SummaryCards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.SummaryCard {
+  background: white;
+  border-radius: 14px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 181, 209, 0.35);
+}
+
+.SummaryLabel {
+  display: block;
+  color: #7f3c58;
+  margin-bottom: 10px;
+}
+
+.GraphCard {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 181, 209, 0.35);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.GraphCard.MoodGraph {
+  grid-area: mood;
+}
+
+.GraphCard.SleepGraph {
+  grid-area: sleep;
+}
+
+.GraphCard.NotesGraph {
+  grid-area: notes;
+}
+
+.PieCard {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  justify-items: center;
+  min-width: 0;
+}
+
+.PieChart {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.PieSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.PieCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.PieCenter strong {
+  display: block;
+  color: #b02f60;
+  font-size: 0.95rem;
+}
+
+.PieCenter span {
+  display: block;
+  color: #7f3c58;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.PieLegend {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.PieLegendItem {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.PieLegendItem span {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.PieLegendItem strong {
+  color: #9b3067;
+}
+
+.PieSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.GraphCard h2 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  color: #9b3067;
+}
+
+.ResultsGraph > .GraphCard:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 960px) {
+  .CalendarLayout,
+  .Dashboard,
+  .ResultsGraph {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+
+  .PieCard {
+    grid-template-columns: 1fr;
+  }
+
+  .PieChart {
+    width: 160px;
+    height: 160px;
+  }
+
+  .SummaryCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .SummaryCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.BarGraph {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.BarRow {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.BarLabel {
+  font-size: 1rem;
+}
+
+.BarTrack {
+  height: 32px;
+  background: #ffeaf1;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.BarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff8eb3, #ff5980);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  color: white;
+  font-weight: 700;
+  transition: width 0.25s ease;
+}
+
+.SmallChart {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  align-items: end;
+}
+
+.ChartColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ColumnLabel {
+  font-size: 0.8rem;
+  color: #7f3c58;
+}
+
+.ColumnBar {
+  width: 100%;
+  min-height: 40px;
+  background: #ffeaf1;
+  border-radius: 20px 20px 0 0;
+  display: grid;
+  place-items: flex-end center;
+  color: #9b3067;
+  font-weight: 700;
+  padding-top: 8px;
+}
+
+.NoteList {
+  display: grid;
+  gap: 14px;
+}
+
+.NoteItem {
+  padding: 16px;
+  background: #fff8fb;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 181, 209, 0.4);
+}
+
+.NoteMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: #7f3c58;
+  font-size: 0.95rem;
+}
+
+.EmptyState {
+  margin: 0;
+  color: #ad92a3;
+}
+
+@media (max-width: 940px) {
+  .SummaryCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .CalendarLayout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .Calendar,
+  .FormPanel {
+    max-width: 100%;
+  }
+
+  .SummaryCards {
+    grid-template-columns: 1fr;
+  }
+
+  .SmallChart {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

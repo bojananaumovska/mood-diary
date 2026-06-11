@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+﻿import { useState } from 'react';
 import './App.css';
+import Header from './Header';
+import MoodCalendar from './MoodCalendar';
+import Dashboard from './Dashboard';
+import Positivity from './Positivity';
 
 function App() {
+  const [page, setPage] = useState('calendar');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Header />
+      <div className="PageNav">
+        <button
+          className={page === 'calendar' ? 'active' : ''}
+          type="button"
+          onClick={() => setPage('calendar')}
         >
-          Learn React
-        </a>
-      </header>
+          Calendar
+        </button>
+        <button
+          className={page === 'dashboard' ? 'active' : ''}
+          type="button"
+          onClick={() => setPage('dashboard')}
+        >
+          Dashboard
+        </button>
+        <button
+          className={page === 'positivity' ? 'active' : ''}
+          type="button"
+          onClick={() => setPage('positivity')}
+        >
+          Positivity
+        </button>
+      </div>
+      <div className="MainLayout">
+        {page === 'calendar' && <MoodCalendar />}
+        {page === 'dashboard' && <Dashboard />}
+        {page === 'positivity' && <Positivity />}
+      </div>
     </div>
   );
+      <p2>вфнв</p2>
 }
+
 
 export default App;
